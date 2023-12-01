@@ -10,8 +10,8 @@
       margin: 0;
       padding: 0;
       background-color: black;
-      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAAmklEQVR42mNkAAMSZn//jwVABCRxkOFgYAI0YAQCgTtOTtAAABCpQo5lGAbwAAAABJRU5ErkJggg==');
       color: white;
+      overflow: hidden;
     }
     input {
       padding: 5px;
@@ -33,6 +33,23 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+    }
+    /* Stars pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAKCAQAAAAmOzsCAAAAC0lEQVR42mP8/wcAAwAB/UBVchAAAAABJRU5ErkJggg==') repeat top left;
+      z-index: -1;
+      animation: stars 50s linear infinite;
+    }
+
+    @keyframes stars {
+      from { background-position: 0 0; }
+      to { background-position: 100% 100%; }
     }
   </style>
   <title>Gravitational Acceleration Calculator</title>
@@ -84,3 +101,4 @@
   </script>
 </body>
 </html>
+
