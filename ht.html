@@ -12,9 +12,9 @@
 </head>
 <body>
   <h1>Gravitational Acceleration Calculator</h1>
-  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass">
+  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass" value="">
   <br>
-  <label for="radius">Enter Radius (m): </label><input type="text" id="radius">
+  <label for="radius">Enter Radius (m): </label><input type="text" id="radius" value="">
   <br>
   <button onclick="calculate()">Calculate</button>
   <button onclick="convertToScientific()">Convert to Scientific</button>
@@ -37,8 +37,13 @@
       const massInput = document.getElementById('mass'),
             radiusInput = document.getElementById('radius');
 
-      massInput.value = parseFloat(massInput.value.replace(/,/g, '')).toExponential();
-      radiusInput.value = parseFloat(radiusInput.value.replace(/,/g, '')).toExponential();
+      if (massInput.value.trim() !== '') {
+        massInput.value = parseFloat(massInput.value.replace(/,/g, '')).toExponential();
+      }
+
+      if (radiusInput.value.trim() !== '') {
+        radiusInput.value = parseFloat(radiusInput.value.replace(/,/g, '')).toExponential();
+      }
     };
   </script>
 </body>
