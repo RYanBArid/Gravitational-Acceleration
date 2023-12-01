@@ -12,17 +12,17 @@
 </head>
 <body>
   <h1>Gravitational Acceleration Calculator</h1>
-  <label for="mass">Enter Mass (kg): </label><input type="number" id="mass" step="any">
+  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass">
   <br>
-  <label for="radius">Enter Radius (m): </label><input type="number" id="radius" step="any">
+  <label for="radius">Enter Radius (m): </label><input type="text" id="radius">
   <br>
   <button onclick="calculate()">Calculate</button>
   <div id="result"></div>
 
   <script>
     const G = 6.67430e-11, calculate = () => {
-      const m = parseFloat(document.getElementById('mass').value),
-            r = parseFloat(document.getElementById('radius').value),
+      const m = parseFloat(document.getElementById('mass').value.replace(/,/g, '')),
+            r = parseFloat(document.getElementById('radius').value.replace(/,/g, '')),
             g = (G * m) / (r ** 2);
 
       if (isNaN(m) || isNaN(r) || m <= 0 || r <= 0) {
