@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {font-family: Arial, sans-serif; text-align: center; margin: 50px;}
+    input {padding: 5px; margin: 10px;}
+    #result {margin-top: 20px; font-weight: bold;}
+  </style>
+  <title>Gravitational Acceleration Calculator</title>
+</head>
+<body>
+  <h1>Gravitational Acceleration Calculator</h1>
+  <label for="mass">Enter Mass (kg): </label><input type="number" id="mass" step="any">
+  <br>
+  <label for="radius">Enter Radius (m): </label><input type="number" id="radius" step="any">
+  <br>
+  <button onclick="calculate()">Calculate</button>
+  <div id="result"></div>
+
+  <script>
+    const G = 6.67430e-11, calculate = () => {
+      const m = parseFloat(document.getElementById('mass').value),
+            r = parseFloat(document.getElementById('radius').value),
+            g = (G * m) / (r ** 2);
+
+      if (isNaN(m) || isNaN(r) || m <= 0 || r <= 0) {
+        alert('Please enter valid positive numbers for mass and radius.');
+        return;
+      }
+
+      document.getElementById('result').innerHTML = `Gravitational Acceleration: ${g.toFixed(2)} m/s^2`;
+    };
+  </script>
+</body>
+</html>
+
