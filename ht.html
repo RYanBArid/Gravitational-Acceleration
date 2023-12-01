@@ -5,24 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {font-family: Arial, sans-serif; text-align: center; margin: 50px;}
-    input {padding: 5px; margin: 10px;}
+    input {padding: 5px; margin: 10px; color: #555;}
     #result {margin-top: 20px; font-weight: bold;}
   </style>
   <title>Gravitational Acceleration Calculator</title>
 </head>
 <body>
   <h1>Gravitational Acceleration Calculator</h1>
-  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass" placeholder="e.g., 3.00e24" value="3.00e24">
+  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass" placeholder="e.g., 3.00e24" value="e.g., 3.00e24" onfocus="clearExample(this)">
   <br>
-  <label for="radius">Enter Radius (m): </label><input type="text" id="radius" placeholder="e.g., 6.371e6" value="6.371e6">
+  <label for="radius">Enter Radius (m): </label><input type="text" id="radius" placeholder="e.g., 6.371e6" value="e.g., 6.371e6" onfocus="clearExample(this)">
   <br>
   <button onclick="calculate()">Calculate</button>
   <div id="result"></div>
 
   <script>
     const G = 6.67430e-11, calculate = () => {
-      const m = parseFloat(document.getElementById('mass').value.replace(/,/g, '')),
-            r = parseFloat(document.getElementById('radius').value.replace(/,/g, '')),
+      const massInput = document.getElementById('mass'),
+            radiusInput = document.getElementById('radius'),
+            m = parseFloat(massInput.value.replace(/,/g, '')),
+            r = parseFloat(radiusInput.value.replace(/,/g, '')),
             g = (G * m) / (r ** 2);
 
       if (isNaN(m) || isNaN(r) || m <= 0 || r <= 0) {
@@ -32,7 +34,14 @@
 
       document.getElementById('result').innerHTML = `Gravitational Acceleration: ${g.toFixed(4)} m/s^2`;
     };
-    
+
+    function clearExample(input) {
+      if (input.value.startsWith('e.g.,')) {
+        input.value = '';
+        input.style.color = '#000'; // Change text color to black when cleared
+      }
+    }
+
     // Optionally, you can call calculate() when the user hits Enter in one of the input fields
     document.getElementById('mass').addEventListener('keyup', function(event) {
       if (event.key === 'Enter') {
