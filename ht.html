@@ -15,10 +15,13 @@
     input {
       padding: 5px;
       margin: 10px;
-      color: white; /* Set input text color to white */
+      color: white; /* Set initial text color to white */
       background-color: rgba(255, 255, 255, 0.1);
       border: none;
       border-radius: 5px;
+    }
+    ::placeholder {
+      color: #777; /* Set placeholder color to gray */
     }
     #result {
       margin-top: 20px;
@@ -38,9 +41,9 @@
 </head>
 <body>
   <h1>Gravitational Acceleration Calculator</h1>
-  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass" placeholder="e.g., 3.00e24" value="e.g., 3.00e24" onfocus="clearExample(this)">
+  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass" placeholder="e.g., 3.00e24" oninput="changeTextColor(this)">
   <br>
-  <label for="radius">Enter Radius (m): </label><input type="text" id="radius" placeholder="e.g., 6.371e6" value="e.g., 6.371e6" onfocus="clearExample(this)">
+  <label for="radius">Enter Radius (m): </label><input type="text" id="radius" placeholder="e.g., 6.371e6" oninput="changeTextColor(this)">
   <br>
   <button onclick="calculate()">Calculate</button>
   <div id="result"></div>
@@ -61,11 +64,8 @@
       document.getElementById('result').innerHTML = `Gravitational Acceleration: ${g.toFixed(4)} m/s^2`;
     };
 
-    function clearExample(input) {
-      if (input.value.startsWith('e.g.,')) {
-        input.value = '';
-        input.style.color = '#000'; // Change text color to black when cleared
-      }
+    function changeTextColor(input) {
+      input.style.color = 'white'; // Change text color to white when the user starts typing
     }
 
     // Optionally, you can call calculate() when the user hits Enter in one of the input fields
@@ -83,3 +83,4 @@
   </script>
 </body>
 </html>
+
