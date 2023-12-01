@@ -41,9 +41,9 @@
 </head>
 <body>
   <h1>Gravitational Acceleration Calculator</h1>
-  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass" placeholder="e.g., 3.00e24" oninput="changeTextColor(this)">
+  <label for="mass">Enter Mass (kg): </label><input type="text" id="mass" placeholder="e.g., 3.00e24" oninput="changeTextColor(this)" onkeypress="allowNumbersAndE(event)">
   <br>
-  <label for="radius">Enter Radius (m): </label><input type="text" id="radius" placeholder="e.g., 6.371e6" oninput="changeTextColor(this)">
+  <label for="radius">Enter Radius (km): </label><input type="text" id="radius" placeholder="e.g., 6371" oninput="changeTextColor(this)" onkeypress="allowNumbersAndE(event)">
   <br>
   <button onclick="calculate()">Calculate</button>
   <div id="result"></div>
@@ -55,7 +55,7 @@
 
       // Convert user input to numbers
       const m = parseFloat(massInput.replace(/,/g, '')),
-            r = parseFloat(radiusInput.replace(/,/g, ''));
+            r = parseFloat(radiusInput.replace(/,/g, '')) * 1e3; // Convert radius to meters
 
       const g = (G * m) / (r ** 2);
 
@@ -69,6 +69,13 @@
 
     function changeTextColor(input) {
       input.style.color = 'white'; // Change text color to white when the user starts typing
+    }
+
+    function allowNumbersAndE(event) {
+      const allowedChars = /[0-9e]/;
+      if (!allowedChars.test(event.key)) {
+        event.preventDefault();
+      }
     }
   </script>
 </body>
