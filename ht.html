@@ -50,11 +50,14 @@
 
   <script>
     const G = 6.67430e-11, calculate = () => {
-      const massInput = document.getElementById('mass'),
-            radiusInput = document.getElementById('radius'),
-            m = parseFloat(massInput.value.replace(/,/g, '')),
-            r = parseFloat(radiusInput.value.replace(/,/g, '')),
-            g = (G * m) / (r ** 2);
+      const massInput = document.getElementById('mass').value,
+            radiusInput = document.getElementById('radius').value;
+
+      // Convert user input to numbers
+      const m = parseFloat(massInput.replace(/,/g, '')),
+            r = parseFloat(radiusInput.replace(/,/g, ''));
+
+      const g = (G * m) / (r ** 2);
 
       if (isNaN(m) || isNaN(r) || m <= 0 || r <= 0) {
         alert('Please enter valid positive numbers for mass and radius.');
@@ -83,4 +86,3 @@
   </script>
 </body>
 </html>
-
