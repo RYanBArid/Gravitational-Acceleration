@@ -17,6 +17,7 @@
   <label for="radius">Enter Radius (m): </label><input type="text" id="radius">
   <br>
   <button onclick="calculate()">Calculate</button>
+  <button onclick="convertToScientific()">Convert to Scientific</button>
   <div id="result"></div>
 
   <script>
@@ -31,8 +32,14 @@
       }
 
       document.getElementById('result').innerHTML = `Gravitational Acceleration: ${g.toFixed(2)} m/s^2`;
+    },
+    convertToScientific = () => {
+      const massInput = document.getElementById('mass'),
+            radiusInput = document.getElementById('radius');
+
+      massInput.value = parseFloat(massInput.value.replace(/,/g, '')).toExponential();
+      radiusInput.value = parseFloat(radiusInput.value.replace(/,/g, '')).toExponential();
     };
   </script>
 </body>
 </html>
-
