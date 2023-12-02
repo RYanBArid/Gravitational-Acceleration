@@ -78,7 +78,7 @@
     }
 
     function allowNumbersAndE(event) {
-      const allowedChars = /[0-9e]/;
+      const allowedChars = /[0-9e.]/;
       if (!allowedChars.test(event.key)) {
         event.preventDefault();
       }
